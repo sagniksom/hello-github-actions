@@ -25,6 +25,15 @@ jobs:
     name: echo action
     runs-on: ubuntu-latest
     steps:
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/jeff
+          key: jeff
       - if: ${{ steps.cache.outputs.cache-hit != false }}
         name: Echo
         continue-on-error: true
