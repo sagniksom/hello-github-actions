@@ -31,5 +31,6 @@ jobs:
       - if: ${{ needs.build.outputs.output1 != false }}
         name: Echo
         run: |
+          ls
           cd jeff
           ls
