@@ -28,9 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: ls
+        run: ls
       - if: ${{ needs.build.outputs.output1 != false }}
         name: Echo
         run: |
-          ls
           cd jeff
           ls
