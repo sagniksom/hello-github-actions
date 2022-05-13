@@ -34,9 +34,8 @@ jobs:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/jeff
           key: jeff
-      - if: ${{ steps.cache.outputs.cache-hit != false }}
+      - if: ${{ jobs.build.steps.cache.outputs.cache-hit != false }}
         name: Echo
-        continue-on-error: true
         run: |
           cd jeff
           ls
