@@ -8,7 +8,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: make jeff
         id: make
-        run: mkdir jeff
+        run: |
+          mkdir jeff
+          cd jeff
+          touch ffej.txt
       - name: Cache node modules
         id: cache
         uses: actions/cache@v3
@@ -19,7 +22,9 @@ jobs:
           path: ~/jeff
           key: jeff
 
-      - if: ${{ steps.cache.outputs.cache-hit == false }}
+      - if: ${{ steps.cache.outputs.cache-hit != false }}
         name: Echo
         continue-on-error: true
-        run: echo "cache hit false"
+        run: |
+          cd jeff
+          ls
