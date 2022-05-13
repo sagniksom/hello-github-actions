@@ -21,7 +21,10 @@ jobs:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/jeff
           key: jeff
-
+  echo:
+    name: echo action
+    runs-on: ubuntu-latest
+    steps:
       - if: ${{ steps.cache.outputs.cache-hit != false }}
         name: Echo
         continue-on-error: true
