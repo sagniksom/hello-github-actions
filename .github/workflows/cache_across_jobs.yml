@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: jeff
-          key: ${{ runner.os }}-${{ env.GITHUB_RUN_NUMBER }}
+          key: ci-${{ github.run_id }}-${{ github.run_number }}
 
   # test that app is properly formatted and linted
   test-lint:
@@ -31,6 +31,6 @@ jobs:
         uses: actions/cache@v2
         with:
           path: jeff
-          key: ${{ runner.os }}-${{ env.GITHUB_RUN_NUMBER }}
+          key: ci-${{ github.run_id }}-${{ github.run_number }}
       - name: Run test
         run: echo $(ls -a jeff)
