@@ -32,6 +32,8 @@ jobs:
         run: |
           mkdir not_jeff
           echo $(ls -a)
+          echo $(ls -a ..)
+          echo $(ls -a ../..)
       - if: ${{ needs.build.outputs.output1 != false }}
         name: Echo
         run: |
