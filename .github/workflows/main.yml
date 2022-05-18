@@ -6,14 +6,17 @@ jobs:
     steps:
     - run: echo {{ github.run_id }}
   job2:
+    needs: job1
     runs-on: ubuntu-latest
     steps:
     - run: echo {{ github.run_id }}
   job3:
+    needs: job2
     runs-on: ubuntu-latest
     steps:
     - run: echo {{ github.run_id }}
   build:
+    needs: job3
     uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
     with:
       username: mona
