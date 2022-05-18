@@ -14,28 +14,25 @@ jobs:
           mkdir jeff
           cd jeff
           touch ffej.txt
-      - name: Cache node modules
-        id: cache
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
+      - uses: actions/upload-artifact@v2
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/jeff
-          key: jeff
+          name: jeff
+          path: jeff
   echo:
     name: echo action
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: jeff
+          path: jeff
       - name: ls
         run: |
-          mkdir not_jeff
-          echo $(ls -a)
-          echo $(ls -a ..)
-          echo $(ls -a ../..)
-      - if: ${{ needs.build.outputs.output1 != false }}
-        name: Echo
+          ls jeff
+      - name: Echo
         run: |
-          cd jeff
-          ls
+          curl \
+          -X DELETE \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/sagniksom/hello-github-actions/actions/artifacts/jeff
