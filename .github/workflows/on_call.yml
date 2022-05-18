@@ -9,8 +9,8 @@ on:
 
 jobs:
   reusable_workflow_job:
-  runs-on: ubuntu-latest
-  steps:
-    - name: echo
-      runs: |
-        echo ${{ inputs.username }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: |
+          echo ${{ inputs.username }}
