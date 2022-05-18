@@ -1,6 +1,18 @@
 name: A workflow for my hello world file
 on: workflow_dispatch
 jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo {{ github.run_id }}
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo {{ github.run_id }}
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo {{ github.run_id }}
   build:
     uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
     with:
