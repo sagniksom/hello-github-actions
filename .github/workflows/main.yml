@@ -2,12 +2,6 @@ name: A workflow for my hello world file
 on: workflow_dispatch
 jobs:
   build:
-    name: Hello world action
-    runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.cache.outputs.cache-hit}}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
-        with:
-          username: mona
+    uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
+    with:
+      username: mona
