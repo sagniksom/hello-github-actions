@@ -32,7 +32,7 @@ jobs:
           ls jeff
       - name: Echo
         run: |
-          curl -v \
+          curl \
           -X DELETE \
           -H "Authorization: token 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"
           -H "Accept: application/vnd.github.v3+json" \
