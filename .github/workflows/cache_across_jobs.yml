@@ -14,10 +14,16 @@ jobs:
         run: |
           mkdir jeff
           touch jeff/ffej.txt
+      - name: make another forder
+        run: |
+          mkdir ffej
+          touch ffej/ffej.txt
       - name: Store cache
         uses: actions/cache@v2
         with:
-          path: jeff
+          path: |
+            ffej
+            jeff
           key: ci-${{ github.run_id }}-${{ github.run_number }}
 
   # test that app is properly formatted and linted
@@ -30,7 +36,11 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v2
         with:
-          path: jeff
+          path: |
+            jeff
+            ffej
           key: ci-${{ github.run_id }}-${{ github.run_number }}
       - name: Run test
-        run: echo $(ls -a jeff)
+        run: |
+          echo $(ls -a jeff)
+          echo $(ls -a ffej)
