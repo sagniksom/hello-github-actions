@@ -21,9 +21,7 @@ jobs:
       - name: Store cache
         uses: actions/cache@v2
         with:
-          path: |
-            ffej
-            jeff
+          path: ffej
           key: ci-${{ github.run_id }}-${{ github.run_number }}
 
   # test that app is properly formatted and linted
@@ -36,9 +34,8 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v2
         with:
-          path: |
-            jeff
+          path: ffej
           key: ci-${{ github.run_id }}-${{ github.run_number }}
       - name: Run test
         run: |
-          echo $(ls -a jeff)
+          echo $(ls -a ffej)
