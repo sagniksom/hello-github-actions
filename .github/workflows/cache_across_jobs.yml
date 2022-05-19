@@ -38,9 +38,7 @@ jobs:
         with:
           path: |
             jeff
-            ffej
           key: ci-${{ github.run_id }}-${{ github.run_number }}
       - name: Run test
         run: |
           echo $(ls -a jeff)
-          echo $(ls -a ffej)
