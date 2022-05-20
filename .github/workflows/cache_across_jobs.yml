@@ -18,10 +18,15 @@ jobs:
         run: |
           mkdir ffej
           touch ffej/ffej-${{ github.run_id }}.txt
+      - run: |
+          echo $(ls)
+          DOCKER_BUILDKIT=1 docker build \
+          -t rubikloud/ml_demandsensing:dev-base \
+          .
       - name: Store cache
         uses: actions/cache@v2
         with:
-          path: ffej
+          path: /var/lib/docker/
           key: ci-${{ github.run_id }}-${{ github.run_number }}
 
   # test that app is properly formatted and linted
@@ -34,8 +39,9 @@ jobs:
       - name: Restore cache
         uses: actions/cache@v2
         with:
-          path: ffej
+          path: /var/lib/docker/
           key: ci-${{ github.run_id }}-${{ github.run_number }}
       - name: Run test
         run: |
           echo $(ls -a ffej)
+          docker image ls
