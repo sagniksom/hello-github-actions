@@ -9,12 +9,17 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-    - run: echo {{ github.run_id }}
+    - run: |
+        DOCKER_BUILDKIT=1 docker build \
+        -t rubikloud/ml_demandsensing:dev-base \
+        .
   job3:
     needs: job2
     runs-on: ubuntu-latest
     steps:
-    - run: echo {{ github.run_id }}
+    - run: |
+        echo $(ls ../../var/lib)
+        echo $(ls ../../var/lib/docker/images)
   build:
     needs: job3
     uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
