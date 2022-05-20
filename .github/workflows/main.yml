@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo $(ls ../../var/lib)
-        echo $(ls ../../var/lib/docker/images)
+        echo $(ls /var/lib)
+        echo $(ls /var/lib/docker/images)
   build:
     needs: job3
     uses: sagniksom/hello-github-actions/.github/workflows/on_call.yml@main
